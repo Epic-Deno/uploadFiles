@@ -1,0 +1,14 @@
+{
+  "name": "uploadfiles",
+  "version": "1.0",
+  "main": "app.js",
+  "author": "pony",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "multer": "^1.4.2"
+  }
+}
