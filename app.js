@@ -29,20 +29,26 @@ const createFolder = (folder) => {
  
  //跨域设置
  app.all("*",(request, response, next) => {
-     response.header("Access-Control-Allow-Origin", "http://127.0.0.1:8081");
-     response.header("Access-Control-Allow-Origin", 'Content-Type, Content, Content-Type, Content-Length, Authorization, Accept, X-Requested-with');
-     response.header(
-        "Access-Control-Allow-Origin",
-        "PUT,POST,GET,DELETE,OPTIONS"
-     );
+     // response.header("Access-Control-Allow-Origin", "http://127.0.0.1:8081", "http://192.168.2.14:10086",  "*");
+     // response.header("Access-Control-Allow-Origin", 'Content-Type, Content, Content-Type, Content-Length, Authorization, Accept, X-Requested-with');
+     // response.header(
+     //    "Access-Control-Allow-Origin",
+     //    "PUT,POST,GET,DELETE,OPTIONS"
+     // );
+     // response.header("Content-Type", "application/json;charset=utf-8");
+     response.header("Access-Control-Allow-Origin", "*");
+     response.header("Access-Control-Allow-Headers", "X-Requested-With");
+     response.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+     response.header("X-Powered-By", ' 3.2.1')
      response.header("Content-Type", "application/json;charset=utf-8");
      next();
  });
 
  const fileFilter = (req, file, cb) => {
-     const acceptableMime = ["image/jpeg", "image/png", "image/jpg", "image/gif", "aplication/zip", "aplication/x-zip-compressed"];
+     const acceptableMime = ["image/jpeg", "image/png", "image/jpg", "image/gif", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "aplication/zip", "aplication/x-zip-compressed"];
      //限制类型
      //null是固定写法
+     console.log(file.mimetype)
      if(acceptableMime.indexOf(file.mimetype) != -1) {
          cb(null, true); // 通过上传
      } else { 
